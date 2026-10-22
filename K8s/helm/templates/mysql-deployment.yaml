@@ -27,13 +27,12 @@ spec:
             add: ["NET_ADMIN"]
         ports:
         - containerPort: 3306
+        args:
+        - --innodb-buffer-pool-size=128M
+        - --performance-schema=OFF
         resources:
           limits:
-            cpu: 200m
-            memory: 1024Mi
-          requests:
-            cpu: 100m
-            memory: 700Mi
+            cpu: 1000m
       restartPolicy: Always
       {{- with .Values.mysql.affinity }}
       affinity:
